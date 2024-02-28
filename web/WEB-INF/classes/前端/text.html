@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="vue.js"></script>
+    <style>
+        body>p{color: green}
+        #divx {width: 880px ; height : 40px ; background-color: green;
+            position: absolute; left: 50%; top:50%;
+            margin-left:-440px ;margin-top:-20px;}
+        #divy {width: 80px ; height :460px ; background-color : green;
+            position: absolute; left :50%; top: 50%;
+            margin-left:-40px ;margin-top: -230px;}
+
+    </style>
+</head>
+<body>
+<div id="div" onmouseover="f(this)" onmouseout="f1(this)">
+{{data}}
+</div>
+<div id="divx"></div>
+<div id="divy"></div>
+
+<marquee width=400 behavior=alternate direction=left align=middle>弹来弹去跑马灯!</marquee>
+<script>
+    function f(div) {
+        div.style.color="red";
+    }
+    function f1(div) {
+        div.style.color="black";
+    }
+    new Vue({
+        el:'#div',
+        data:{
+            data:"hello Vue.jsp!"
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息完善</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="bitbug_favicon.ico">
+    <link rel="stylesheet" type="text/css" href="输入框.css">
+    <style>
+        body{
+            background-image: url("背景2.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 130%;
+        }
+        div{
+            background-image: url("背景1.jpg");
+            background-size:100% 100%;
+            width: 300px;
+            height: 350px;
+            padding: 50px;
+            margin: 100px auto;
+            border: 0px solid gray;
+            box-shadow: 0 0 10px gray;
+        }
+        input{
+            width: 200px;
+            margin-bottom: 15px;
+        }
+        button{
+            background-color: deepskyblue;
+            width: 200px;
+            height: 36px;
+            color: white;
+            border-radius:20px;
+            border-style:none;
+            font-size:14px;
+            color:rgba(249,248,248,1.00);
+        }
+        button:focus{
+            background-color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>个人信息完善</h1>
+    <input type="text" placeholder="姓名">
+    <input type="number" placeholder="工号/学号">
+    <input type="text" placeholder="电子邮箱">
+    <input type="number" placeholder="电话"><br>
+    身份:<input type="radio" style="width: 20px" name="sex">老师<input type="radio" style="width: 20px" name="sex">学生
+    <button>确认</button>
+</div>
+</body>
+</html>

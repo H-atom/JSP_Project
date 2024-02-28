@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>老师系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <link rel="icon" href="bitbug_favicon.ico">
+    <link rel="stylesheet" type="text/css" href="输入框.css">
+    <style>
+        body{
+            background-color: #f3f5f8;
+            width: 100%;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        #div{
+            width: 1525px;
+            height: 45px;
+            line-height: 24px;
+            margin: 5px auto;
+            box-shadow: 0 0 3px gray;
+            background-color: white;
+        }
+        span{
+            font-size: small;
+            color:white;
+            font-family: 方正姚体,serif ;
+        }
+        #Std{
+            /*width: 89%;*/
+        }
+        #td{
+            width:92%;
+            text-align: right;
+            line-height: 45px;
+        }
+        #buttonMessage{
+            background-image: url("消息.jpg");
+            width: 30px;
+            height: 31px;
+            border: 0;
+        }
+        #buttonPassword{
+            background-image: url("修改密码.jpg");
+            width: 31px;
+            height: 31px;
+            border: 0;
+        }
+        #buttonExit{
+            background-image: url("注销.jpg");
+            width: 31px;
+            height: 31px;
+            border: 0;
+        }
+        #buttonMe{
+            background-image: url("我的.png");
+            width: 33px;
+            height: 30px;
+            border: 0;
+        }
+        /*.div为中间元素块*/
+        .div{
+            display: inline-block;
+            margin-left: 180px;
+            margin-top: 0;
+            border-top: 0;
+        }
+        .div div{
+            position:absolute;
+            padding: 0;
+            line-height: 50px;
+            -webkit-border-radius: 100px / 30px;
+            -moz-border-radius: 100px / 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-left: 10px;
+            margin-top: 0;
+        }
+        .div button{
+            border-radius:20px;
+            border-style:none;
+            color:rgba(249,248,248,1.00);
+            width: 150px;
+            height: 53px;
+        }
+        /*左侧选择功能表设计*/
+        #divTable{
+            background-color: white;
+            margin-top: 60px;
+            margin-left: 20px;
+            width: 180px;
+            height: 600px;
+            /*box-shadow: 0 0 10px gray;*/
+        }
+        li{
+            list-style: none;
+        }
+        #divTable li{
+            font-family: 方正姚体,serif;
+            color:#5f727f;
+        }
+        #divTable ul{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #divTable div{
+            margin: 10px;
+            padding-top: 5px;
+        }
+        #divTable div:hover{
+            background-color: #f3f5f8;
+        }
+        #divTable li{
+            height: 30px;
+        }
+        #divTable ul{
+            padding:0;
+            margin-left:20px;
+            text-align:left;
+            list-style-type: none;
+        }
+        #divTable div li:hover{
+            color: #66afe9;
+        }
+
+        /*选课系统style*/
+        #divChoose{
+            width: 100%;
+            height: 600px;
+            margin-top:60px;
+            margin-left:15px;
+            background-color: white;
+            text-align: center;
+            line-height: 500px;
+            /*display: none;*/
+        }
+        /*选课表格*/
+
+        #divChoose tr{
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .chooseTable{
+            height: 30px;
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid darkgray;
+            color: #66afe9;
+            padding: 0;
+            margin: 0;
+            table-layout:fixed;
+            word-wrap:break-word;
+            word-break:break-all;
+        }
+        [contenteditable]:focus{
+            outline-color: #66afe9;
+        }
+        .bottomTable{
+            /*height: 420px;*/
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid darkgray;
+            color: #66afe9;
+            padding: 0;
+            margin: 0;
+            table-layout:fixed;
+            word-wrap:break-word;
+            word-break:break-all;
+        }
+        .bottomTable tr{
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        .buttonTr input{
+            width: 150px;
+            margin-right: 3px;
+        }
+
+        /*录入成绩界面设计*/
+       #divScore{
+           width: 100%;
+           height: 600px;
+           margin-top:60px;
+           margin-left:15px;
+           background-color: white;
+           text-align: center;
+           line-height: 500px;
+       }
+        #divScore tr{
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        #buttonTr input{
+            width: 110px;
+            margin-right: 3px;
+        }
+        /*查看成绩界面设计*/
+        #divLook{
+            width: 100%;
+            height: 600px;
+            margin-top:60px;
+            margin-left:15px;
+            background-color: white;
+            text-align: center;
+            line-height: 500px;
+        }
+        #divLook tr{
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        #buttonsTr input{
+            width: 150px;
+            margin-right: 3px;
+        }
+        #divAdd{
+            width: 100%;
+            height: 600px;
+            margin-top:60px;
+            margin-left:15px;
+            background-color: white;
+            text-align: center;
+            line-height: 500px;
+        }
+        .li{
+            margin-top:10px;
+            height: 30px;
+            width: 100%;
+            color: #00ccff;
+            line-height: 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+
+        function sure(input,bottomTable ) {
+            var tr=document.createElement('tr');
+            var a=0;
+            for (let i = 0; i < 7; i++) {
+                var td1=document.createElement('td');
+                td1.innerText=input[i].value;
+                if (td1.childNodes.length===0){a=1}
+                tr.appendChild(td1);
+                input[i].value='';
+            }
+            var td=document.createElement('td');
+            var but=document.createElement('button');
+            but.innerText='更改';
+            but.style.margin='5px';
+            but.style.height='30px';
+            but.style.width='50px';
+            but.style.textAlign='center';
+            var but1=document.createElement('button');
+            but1.innerText='删除';
+            but1.style.margin='5px';
+            but1.style.height='30px';
+            but1.style.width='50px';
+            but1.style.textAlign='center';
+            td.appendChild(but);
+            td.appendChild(but1);
+            tr.appendChild(td);
+            if (a===0){bottomTable.appendChild(tr);}
+            but.onclick=function () {
+                if (confirm("你确定要更改吗？")){
+                    for (let i = 0; i < 7; i++) {
+                        input[i].value=tr.cells[i].innerText;
+                    }
+                    bottomTable.removeChild(tr);
+                }
+            }
+            but1.onclick=function () {
+                if (confirm("你确定要删除吗？"))
+                    bottomTable.removeChild(tr);
+            };
+        }
+
+        window.onload=function() {
+            // 左侧功能表的翻转实现
+            var obj1 = document.getElementById('d1');
+            var obj2 = document.getElementById('d2');
+            var obj3 = document.getElementById('d3');
+            var obj4 = document.getElementById('d4');
+            var obj5 = document.getElementById('d5');
+            var obj6 = document.getElementById('d6');
+            var objImg1 = document.getElementById('img1');
+            var objImg2 = document.getElementById('img2');
+            var objImg3 = document.getElementById('img3');
+            var objImg4 = document.getElementById('img4');
+            var objImg5 = document.getElementById('img5');
+            var objImg6 = document.getElementById('img6');
+            var flag = true;
+            obj1.onclick = function () {
+                if (flag) {
+                    obj2.style.display = 'block';
+                    objImg1.style.display = 'none';
+                    objImg2.style.display = 'block';
+                    flag = false;
+                } else {
+                    obj2.style.display = 'none';
+                    objImg1.style.display = 'block';
+                    objImg2.style.display = 'none';
+                    flag = true;
+                }
+            }
+            var flag2 = true;
+            obj3.onclick = function () {
+                if (flag2) {
+                    obj4.style.display = 'block';
+                    objImg3.style.display = 'none';
+                    objImg4.style.display = 'block';
+                    flag2 = false;
+                } else {
+                    obj4.style.display = 'none';
+                    objImg3.style.display = 'block';
+                    objImg4.style.display = 'none';
+                    flag2 = true;
+                }
+            }
+            var flag3 = true;
+            obj5.onclick = function () {
+                if (flag3) {
+                    obj6.style.display = 'block';
+                    objImg5.style.display = 'none';
+                    objImg6.style.display = 'block';
+                    flag3 = false;
+                } else {
+                    obj6.style.display = 'none';
+                    objImg5.style.display = 'block';
+                    objImg6.style.display = 'none';
+                    flag3 = true;
+                }
+            }
+
+            // 页面转换设计
+            var divChoose = document.getElementById('divChoose');
+            var divScore = document.getElementById('divScore');
+            var divLook = document.getElementById('divLook');
+            document.querySelector('#writeClass').onclick = function () {
+                divChoose.style.display = 'block';
+                divScore.style.display = 'none';
+                divLook.style.display = 'none';
+            };
+            document.querySelector('#butClass').onclick = function () {
+                divChoose.style.display = 'block';
+                divScore.style.display = 'none';
+                divLook.style.display = 'none';
+            };
+            document.querySelector('#writeScore').onclick = function () {
+                divScore.style.display = 'block';
+                divChoose.style.display = 'none';
+                divLook.style.display = 'none';
+            };
+            document.querySelector('#butScore').onclick = function () {
+                divScore.style.display = 'block';
+                divChoose.style.display = 'none';
+                divLook.style.display = 'none';
+            };
+            document.querySelector('#lookScore').onclick = function () {
+                divLook.style.display = 'block';
+                divScore.style.display = 'none';
+                divChoose.style.display = 'none';
+            };
+            document.querySelector('#butLook').onclick = function () {
+                divLook.style.display = 'block';
+                divScore.style.display = 'none';
+                divChoose.style.display = 'none';
+            };
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <!--顶端logo及功能按钮设计-->
+    <div id="div">
+        <table>
+            <tr>
+                <td id="Std">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="艺术字.png" alt="图标" height="40" width="80">
+                </td>
+                <td id="td">
+                    <button id="buttonMessage" title="消息"></button>&nbsp;&nbsp;
+                    <button id="buttonPassword" title="修改密码" type="submit" formaction="修改密码.html"></button>
+                    &nbsp;<button id="buttonExit" type="submit" formaction="ColorAS.html" title="注销"></button>
+                    &nbsp;<button id="buttonMe" type="submit" formaction="个人信息完善.html" title="个人信息"></button>
+                </td>
+            </tr>
+        </table>
+</div>
+<div style="height: 30px;width: 100%;border-bottom: 2px solid #dddddd;"></div>
+ <!--    中间按钮设计-->
+    <div class="div">
+        <div style="background-color: deepskyblue;left: 20px;width: 150px;height: 50px;">
+            <span>欢迎登录ColorAS老师界面</span>
+        </div>
+        <div style="height: 50px">
+            <button style="background-color: #ffc36f;font-weight: bold;text-align: left" id="butClass">&nbsp;&nbsp;<img src="课表.jpg" width="40" height="40" style="vertical-align: middle;border-radius: 11px">&nbsp;&nbsp;&nbsp;录入课表</button>
+            <button style="background-color: #ff7556;font-weight: bolder;text-align: left" id="butScore">&nbsp;&nbsp;<img src="成绩.jpg" height="36" width="40" style="vertical-align: middle;border-radius: 11px">&nbsp;&nbsp;&nbsp;评定成绩</button>
+            <button style="background-color: #00ccff;font-weight: bolder;text-align: left" id="butLook">&nbsp;&nbsp;<img src="查询.jpg" height="36" width="40" style="vertical-align: middle;border-radius: 11px">&nbsp;&nbsp;&nbsp;查看成绩</button>
+        </div>
+    </div>
+<!--    主要功能区实现-->
+<div style="display: flex">
+    <!--    左侧功能表的设计-->
+    <div id="divTable">
+        <div></div>
+        <div>
+            <ul id="ul">
+                <li id="d1" style="text-align: left;"><img src="个人信息.png" alt="个人信息" width="150" height="25" id="img1">
+                    <img src="个人信息2.png" alt="个人信息" height="25" width="150" id="img2" style="display: none"></li>
+            </ul>
+            <ul style="display: none;list-style: none" id="d2">
+                <hr style="height: 1px;margin: 0;padding: 0;background-color: deepskyblue">
+                <a href="个人信息完善.html"><li>修改个人信息</li></a>
+                <a href="修改密码.html"><li>修改个人密码</li></a>
+            </ul>
+        </div>
+        <div>
+            <ul id="d3" style="display: inline">
+                <li style="display: inline-block">
+                    <img src="选课系统1.png" alt="选课系统" width="150" height="25" id="img3">
+                    <img src="选课系统2.png" alt="选课系统" width="150" height="25" id="img4" style="display: none">
+                </li>
+            </ul>
+            <ul style="display: none" id="d4">
+                <hr style="height: 1px;margin: 0;padding: 0;background-color: deepskyblue">
+                <li id="writeClass">
+                    录入课表
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul id="d5">
+                <li>
+                    <img src="成绩1.png" alt="成绩" width="150" height="25" id="img5">
+                    <img src="成绩2.png" alt="成绩" width="150" height="25" id="img6" style="display: none">
+                </li>
+            </ul>
+            <ul id="d6" style="display: none">
+                <hr style="height: 1px;margin: 0;padding: 0;background-color: deepskyblue">
+                <li id="writeScore">录入成绩</li>
+                <li id="lookScore">查询成绩</li>
+            </ul>
+        </div>
+    </div>
+<!--    添加课程界面的实现-->
+    <div style="display: none" id="divAdd">
+        <ul style="width: 1200px;margin-left: 40px;padding: 0;background-color: #f3f5f8;height: 600px">
+            <li class="li">学年学期:&nbsp;&nbsp;<input type="text" placeholder="几几年上或下" onblur="blur()"><span style="display: none;color: red">输入内容为空!!!</span></li>
+            <li class="li">&nbsp;&nbsp;课序号:&nbsp;&nbsp;&nbsp;<input type="text" placeholder="阿拉伯数字序列" onblur="blur()"><span>输入内容为空!!!</span></li>
+            <li class="li">课程名称:&nbsp;&nbsp;<input type="text" placeholder="课程名称"></li>
+            <li class="li">课程类型:&nbsp;&nbsp;<input type="text" placeholder="分必修、限选和其他课程"></li>
+            <li class="li">授课老师:&nbsp;&nbsp;<input type="text" placeholder="老师姓名"></li>
+            <li class="li">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学分:&nbsp;&nbsp;<input type="text" placeholder="课程学分"></li>
+            <li class="li">所在教室:&nbsp;&nbsp;<input type="text" placeholder="几区几号教室"></li>
+            <li class="li">上课周次:&nbsp;&nbsp;<input type="text" placeholder="星期几(数字)"></li>
+            <li class="li">上课节次:&nbsp;&nbsp;<input type="text" placeholder="分五节(数字)"></li>
+            <li class="li">开始周次:&nbsp;&nbsp;<input type="text" placeholder="第几周开始上课(数字)"></li>
+            <li class="li">结束周次:&nbsp;&nbsp;<input type="text" placeholder="第几周结课(数字)"></li>
+            <li style="line-height: 60px; margin-top:10px;height: 60px;width: 100%;color: #00ccff;"><span style="vertical-align:top;color: #00ccff;font-size: large;">课程介绍:&nbsp;&nbsp;</span><textarea style="height: 60px;width: 250px" id="1"></textarea></li>
+            <li style="line-height: 60px; margin-top:10px;height: 60px;width: 100%;color: #00ccff;"><button class="buttonSure" id="button1" style="width: 80px;background-color: coral;color: #f3f5f8" onclick="sure(document.querySelectorAll('#divChoose input'),document.getElementById('bottom'))"><h3 style="margin: 0;padding: 0">确定</h3></button></li>
+        </ul>
+    </div>
+<!--    录入课表界面的实现-->
+    <script>
+        var span=document.querySelectorAll("#divAdd input");
+        function blur() {
+            span.style.display="block";
+        }
+        
+        function add() {
+            var divChoose=document.getElementById("divChoose");
+            var divAdd=document.getElementById("divAdd");
+            divChoose.style.display="none";
+            divAdd.style.display="block";
+        }
+        window.onload=function () {
+            var introduce=document.getElementById("1");
+            introduce.innerText="12335455";
+        }
+    </script>
+    <div id="divChoose" style="display: block">
+        <ul style="width: 1200px;margin-left: 40px;padding: 0">
+            <li><button onclick="add()">添加</button></li>
+<!--            <li style="margin:0;height: 70px;background-color: #f3f5f8;width: 100%">-->
+<!--                <table style="height: 70px;line-height: 70px;margin: 0;padding: 0;width: 100%">-->
+<!--                    <tr style="margin:0;text-align: center;line-height: 30px" class="buttonTr">-->
+<!--                        <td><input type="text" placeholder="学年学期"></td>-->
+<!--                        <td><input type="text" placeholder="课序号"></td>-->
+<!--                        <td><input type="text" placeholder="课程名称"></td>-->
+<!--                        <td><input type="text" placeholder="课程类型"></td>-->
+<!--                        <td><input type="text" placeholder="授课老师"></td>-->
+<!--                        <td><input type="text" placeholder="学分"></td>-->
+<!--                        <td><input type="text" placeholder="所在教室"></td>-->
+<!--                        <td><button class="buttonSure" id="button" style="width: 80px;background-color: coral;color: #f3f5f8" onclick="sure(document.querySelectorAll('#divChoose input'),document.getElementById('bottom'))"><h3 style="margin: 0;padding: 0">确定</h3></button></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </li>-->
+            <li style="margin-top: 10px;background-color: #f3f5f8;height: 450px;border: 1px solid darkgray;overflow: auto">
+                <table border="1" class="chooseTable">
+                    <thead>
+                    <tr>
+                        <th>学年学期</th>
+                        <th>课序号</th>
+                        <th>课程名称</th>
+                        <th>课程类型</th>
+                        <th>授课老师</th>
+                        <th>学分</th>
+                        <th>所在教室</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <table class="bottomTable" border="=1" id="bottom">
+                    </table>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </div>
+<!--    评定成绩界面的实现-->
+    <div id="divScore" style="display: none">
+        <ul style="width: 1200px;margin-left: 40px;padding: 0">
+            <li style="margin:0;height: 70px;background-color: #f3f5f8;width: 100%">
+                <table style="height: 70px;line-height: 70px;margin: 0;padding: 0;width: 100%">
+                    <tr style="margin:0;text-align: center;line-height: 30px" id="buttonTr">
+                        <td><input type="text" placeholder="学年学期"></td>
+                        <td><input type="text" placeholder="课序号"></td>
+                        <td><input type="text" placeholder="课程名称"></td>
+                        <td><input type="text" placeholder="课程类型"></td>
+                        <td><input type="text" placeholder="学生"></td>
+                        <td><input type="text" placeholder="科目学分"></td>
+                        <td><input type="text" placeholder="成绩"></td>
+                        <td><input type="text" placeholder="绩点"></td>
+                        <td><input type="text" placeholder="绩点对应等级"></td>
+                        <td><button class="buttonSure" style="width: 80px;background-color: coral;color: #f3f5f8" onclick="sure(document.querySelectorAll('#divScore input'),document.getElementById('bottomTableScore'))"><h3 style="margin: 0;padding: 0">确定</h3></button></td>
+                    </tr>
+                </table>
+            </li>
+            <li style="margin-top: 10px;background-color: #f3f5f8;height: 450px;border: 1px solid darkgray;overflow: auto">
+                <table border="1" class="chooseTable">
+                    <thead>
+                    <tr>
+                        <th>学年学期</th>
+                        <th>课序号</th>
+                        <th>课程名称</th>
+                        <th>课程类型</th>
+                        <th>学生</th>
+                        <th>科目学分</th>
+                        <th>成绩</th>
+                        <th>绩点</th>
+                        <th>绩点对应等级</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <table class="bottomTable" border="=1" id="bottomTableScore">
+                    </table>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </div>
+    <div id="divLook" style="display: none ">
+        <ul style="width: 1200px;margin-left: 40px;padding: 0">
+            <li style="margin:0;height: 70px;background-color: #f3f5f8;width: 100%">
+                <table style="height: 70px;line-height: 70px;margin: 0;padding: 0;width: 100%">
+                    <tr style="margin:0;text-align: center;line-height: 30px" id="buttonsTr">
+                        <td><input type="text" placeholder="学年学期" style="margin-left: 300px"></td>
+                        <td><input type="text" placeholder="课序号"></td>
+                        <td><input type="text" placeholder="课程名称"></td>
+                        <td><input type="text" placeholder="课程类型"></td>
+                        <td><input type="text" placeholder="学生"></td>
+                        <td><button class="buttonSure" style="width: 80px;background-color: coral;color: #f3f5f8" ><h3 style="margin: 0;padding: 0">查询</h3></button></td>
+                    </tr>
+                </table>
+            </li>
+            <li style="margin-top: 10px;background-color: #f3f5f8;height: 450px;border: 1px solid darkgray;overflow: auto">
+                <table border="1" class="chooseTable">
+                    <thead>
+                    <tr>
+                        <th>学年学期</th>
+                        <th>课序号</th>
+                        <th>课程名称</th>
+                        <th>课程类型</th>
+                        <th>学生</th>
+                        <th>科目学分</th>
+                        <th>成绩</th>
+                        <th>绩点</th>
+                        <th>绩点对应等级</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <table class="bottomTable" border="=1">
+                    </table>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
